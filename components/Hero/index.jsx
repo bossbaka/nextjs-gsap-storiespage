@@ -5,12 +5,12 @@ import HeroHeader from "./HeroHeader";
 import HeroPhoneBlock from "./HeroPhoneBlock";
 import HeroUsedBy from "./HeroUsedBy";
 
-function Hero() {
+function Hero({ data }) {
   return (
     <div className="hero-container">
       <HeroHeader />
       <div className="hero-media">
-        <HeroCollage />
+        <HeroCollage data={data} />
         <HeroPhoneBlock />
       </div>
       <HeroUsedBy />

@@ -3,28 +3,6 @@ import Image from "next/image";
 import { gsap } from "gsap";
 
 function VideoElement({ src }) {
-  useEffect(() => {
-    gsap.config({
-      nullTargetWarn: false,
-      trialWarn: false,
-    });
-
-    const tl = gsap.timeline({
-      delay: 0.5,
-    });
-
-    tl.fromTo(
-      ".hero-element",
-      { y: 300 },
-      {
-        y: 0,
-        duration: 1,
-        delay: function (index) {
-          return 0.2 * index;
-        },
-      }
-    );
-  }, []);
   return (
     <div className="hero-element">
       <video
@@ -54,22 +32,29 @@ function ImageElement({ src }) {
   );
 }
 
-function HeroCollage() {
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
-
+function HeroCollage({ data }) {
   useEffect(() => {
-    setLoading(true);
-    fetch("/api/data")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
+    gsap.config({
+      nullTargetWarn: false,
+      trialWarn: false,
+    });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No data</p>;
+    const tl = gsap.timeline({
+      delay: 0.5,
+    });
+
+    tl.fromTo(
+      ".hero-element",
+      { y: 300 },
+      {
+        y: 0,
+        duration: 1,
+        delay: function (index) {
+          return 0.2 * index;
+        },
+      }
+    );
+  }, []);
 
   const leftImages = data.photos.slice(0, 2);
   const rightImages = data.photos.slice(2, data.photos.length);
