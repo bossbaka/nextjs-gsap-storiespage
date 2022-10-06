@@ -1,28 +1,70 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-
-function RenderImages({ activeFeatureIndex }) {
-  return data.featureSildes.map(({ imageUrl }, index) => (
-    <Image
-      key={imageUrl}
-      src={src}
-      //className={`${"as-primary" : activeFeatureIndex === index}`}
-      alt=""
-      layout="responsive"
-      width={200}
-      height={360}
-    />
+import cn from "classnames";
+import FeatureSlide from "./FeatureSilde";
+import { gsap } from "gsap";
+function RenderImages({ activeFeatureIndex, data }) {
+  console.log(data);
+  return data.featureSlides.map(({ imageUrl }, index) => (
+    <>
+      <Image
+        key={imageUrl}
+        src={imageUrl}
+        className={cn({ "as-primary": activeFeatureIndex === index })}
+        alt=""
+        layout="responsive"
+        width={200}
+        height={360}
+      />
+      {/* <img
+        className={cn({ "as-primary": activeFeatureIndex === index })}
+        key={imageUrl}
+        style={{ backgroundImage: `url${imageUrl}` }}
+      /> */}
+    </>
   ));
 }
 
-function FeatureSildes() {
+function FeatureSlides({ data }) {
   const [activeFeatureIndex, setFeatureIndex] = useState(0);
+  const featureSliderRef = useRef(null);
+  const featureSlidersRightRef = useRef(null);
+
+  useEffect(() => {
+    function stopTrigger() {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: featureSlidersRightRef.current,
+          start: "top top",
+          end: () => `+=${featureSliderRef.current.offsetHeight}`,
+          scrub: true,
+          pin: true,
+        },
+      });
+      return tl;
+    }
+    const master = gsap.timeline();
+    master.add(stopTrigger());
+  }, []);
+
   return (
-    <div className="feature-slides-container">
-      <div className="feature-slides-left"></div>
-      <div className="feature-slides-right"></div>
+    <div ref={featureSliderRef} className="feature-slides-container">
+      <div className="feature-slide-left">
+        {data.featureSlides.map((feature, index) => (
+          <FeatureSlide
+            updateActiveImage={setFeatureIndex}
+            key={feature.imageUrl}
+            title={feature.title}
+            description={feature.description}
+            index={index}
+          />
+        ))}
+      </div>
+      <div ref={featureSlidersRightRef} className="feature-slide-right">
+        <RenderImages activeFeatureIndex={activeFeatureIndex} data={data} />
+      </div>
     </div>
   );
 }
 
-export default FeatureSildes;
+export default FeatureSlides;
