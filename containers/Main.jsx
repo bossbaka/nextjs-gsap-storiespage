@@ -41,6 +41,7 @@ function Main() {
     <div>
       <Hero data={data} />
       <FeatureSildes data={data} />
+      <div className="footer">Build your ideal story today.</div>
     </div>
   );
 }

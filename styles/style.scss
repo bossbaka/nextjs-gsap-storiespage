@@ -189,3 +189,15 @@ a {
     }
   }
 }
+
+.footer {
+  margin-top: 100px;
+  height: 70vh;
+  background-color: black;
+  display: flex;
+  align-items: flex-end;
+  padding: 100px;
+  color: white;
+  font-size: 3rem;
+  font-weight: 600;
+}
