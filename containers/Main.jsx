@@ -31,9 +31,9 @@ function Main() {
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No data</p>;
+  //if (!data) return <p>No data</p>;
 
-  console.log(data);
+  //console.log(data);
 
   return loader ? (
     <div className="loader" />

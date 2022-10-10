@@ -4,23 +4,26 @@ import cn from "classnames";
 import FeatureSlide from "./FeatureSilde";
 import { gsap } from "gsap";
 function RenderImages({ activeFeatureIndex, data }) {
-  console.log(data);
+  //console.log(data);
   return data.featureSlides.map(({ imageUrl }, index) => (
     <>
-      <Image
+      <picture>
+        {/* <Image
         key={imageUrl}
         src={imageUrl}
         className={cn({ "as-primary": activeFeatureIndex === index })}
-        alt=""
+        alt="img"
         layout="responsive"
         width={200}
         height={360}
-      />
-      {/* <img
-        className={cn({ "as-primary": activeFeatureIndex === index })}
-        key={imageUrl}
-        style={{ backgroundImage: `url${imageUrl}` }}
       /> */}
+        <img
+          className={cn({ "as-primary": activeFeatureIndex === index })}
+          key={imageUrl}
+          style={{ backgroundImage: `url(${imageUrl})` }}
+          alt="img"
+        />
+      </picture>
     </>
   ));
 }

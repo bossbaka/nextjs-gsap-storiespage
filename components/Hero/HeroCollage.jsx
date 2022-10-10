@@ -23,7 +23,7 @@ function ImageElement({ src }) {
       <Image
         src={src}
         className="collage-element"
-        alt=""
+        alt="img"
         layout="responsive"
         width={200}
         height={360}
@@ -70,10 +70,10 @@ function HeroCollage({ data }) {
         <VideoElement src={leftVideo} />
       </div>
       <div className="right-column">
+        <VideoElement src={rightVideo} />
         {rightImages.map((item, index) => (
           <ImageElement src={item} key={index} />
         ))}
-        <VideoElement src={rightVideo} />
       </div>
     </div>
   );

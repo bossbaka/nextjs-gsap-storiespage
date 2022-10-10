@@ -17,7 +17,7 @@ function HeroHeader() {
   });
   return (
     <div className="hero-text-section">
-      <h1 className="hero-text">Stories meet their</h1>
+      <h1 className="hero-text">Stories meet their wides audience ever</h1>
     </div>
   );
 }

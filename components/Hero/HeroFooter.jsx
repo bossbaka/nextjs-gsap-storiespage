@@ -23,7 +23,7 @@ function HeroFooter() {
 
   return (
     <div ref={ref} className="hero-text-section">
-      <h1>Stories meet their widest audience ever</h1>
+      <h1>Visual stories that feel like yours, because they are.</h1>
     </div>
   );
 }
